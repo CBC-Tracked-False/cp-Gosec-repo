@@ -26,7 +26,7 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	defer rows.Close()
 
 	// ❌ Command Injection (G204)
-	cmd := exec.Command("sh", "-c", "echo "+userID)
+
 	out, _ := cmd.Output()
 
 	fmt.Fprintf(w, "Result: %s %v", out, rows)
