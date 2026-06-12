@@ -32,7 +32,7 @@ jobs:
            echo "Policy Subject: ${{ steps.gosec-step.outputs.policy-subject }}"
 
   policy-evaluation:
-    uses: cloudbees-io/policy-utils/evaluate-policy-context/workflow.yml@v1.2
+    uses: cloudbees-io/policy-utils/evaluate-policy-context/workflow.yml@CBP-47577
     needs:
     - scan-and-evaluate
     with:
