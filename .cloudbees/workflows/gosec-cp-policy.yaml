@@ -29,20 +29,6 @@ jobs:
           echo "Low: ${{ steps.gosec-step.outputs.low-count }}"
           echo "Policy Subject: ${{ steps.gosec-step.outputs.policy-subject }}"
 
-      - name: Print policy input
-        uses: docker://alpine:latest
-        shell: sh
-        env:
-          ORG: ${{ cloudbees.org.id }}
-          ACCESS_KEY: ${{ cloudbees.api.token }}
-          URL: ${{ cloudbees.api.url }}
-          SUBJECT: ${{ steps.gosec-step.outputs.policy-subject }}
-        run: |
-          echo "$URL"
-          echo "$ORG"
-          echo "Authorization: Bearer $ACCESS_KEY"
-          echo "$SUBJECT"
-
       - name: Run policy check
         id: policy-check
         uses: cloudbees-io/policy-utils/evaluate-policy-context/workflow.yml@v1.1
