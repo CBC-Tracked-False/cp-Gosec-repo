@@ -1,4 +1,4 @@
-name: gosec-cp-policy-context
+name: cp-all-checks-fail
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 on:
@@ -32,10 +32,11 @@ jobs:
            echo "Policy Subject: ${{ steps.gosec-step.outputs.policy-subject }}"
 
   policy-evaluation:
-    uses: cloudbees-io/policy-utils/evaluate-policy-context/workflow.yml@v1.2
+    uses: cloudbees-io/policy-utils/evaluate-policy-context/workflow.yml@v2
     needs:
     - scan-and-evaluate
     with:
       input-data: ${{ needs.scan-and-evaluate.outputs.policy-subject }}
       checkpoint-type: workflow
       checkpoint-position: within
+  
